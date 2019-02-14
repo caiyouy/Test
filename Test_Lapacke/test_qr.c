@@ -56,7 +56,7 @@ void QR(double *A,double *b,double *res)
 
 int main(int argc, char const *argv[])
 {
-    double k=1e7;
+    double k=1e9;
     double A[6]={k/sqrt(2)+0.5,-k/sqrt(6)+sqrt(3)/2.0,
                  -k/sqrt(2),   k/sqrt(6),
                  k/sqrt(2)-0.5,-k/sqrt(6)-sqrt(3)/2.0};
