@@ -1,0 +1,66 @@
+\begin{frame}
+\frametitle{An Example: nearly singular system}
+Consider $A_{\epsilon}x=b$, where $A_{\epsilon}=A_0+\epsilon I$
+\begin{equation*}
+A_0=\left(
+    \begin{array}{rrr}
+    1 & -1 & 0\\
+    -1&  2 &-1\\
+    0 & -1 & 1\\
+    \end{array}
+\right)
+\quad
+b=\left(
+    \begin{array}{r}
+    -1\\
+    -1\\
+    2\\
+    \end{array}
+\right)
+\end{equation*}
+Note that $A$ is singular. 
+
+Apply Gauss-Seidel with stop criterion 
+$\Vert A_{\epsilon}x_k-b\Vert_2 \le 10^{-8}$
+and initial guass $x_{0}=b$,
+\begin{table}
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+&\multicolumn{6}{c}{$\epsilon$}\\
+\cmidrule{2-7}
+& 1 & 1e-1 & 1e-2 & 1e-3 & 1e-4 & 0 \\
+\midrule
+Iterations &18 &100 &852 & 6982 & 54470 &2\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Remedy: Expanded system}
+Write $x \in x_1 e_1 +x_2 e_2 +x_3 e_3$ as 
+$$x=\tilde{x}_1 e_1 +\tilde{x}_2 e_2 +\tilde{x}_3 e_3 +\tilde{x}_4 e
+=P\,\tilde{x}$$
+where 
+$$P=(e_1, e_2, e_3, e)\quad e=(1,1,1)^T \in \text{ker}(A_0)$$
+Note,
+$$A_{\epsilon}x=b \Longleftrightarrow 
+A_{\epsilon}P\,\tilde{x}=b \Longleftrightarrow 
+P'A_{\epsilon}P\,\tilde{x}=P'b
+$$ 
+Apply Gauss-Seidel to the expanded system with the same setup, 
+\begin{table}
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+&\multicolumn{6}{c}{$\epsilon$}\\
+\cmidrule{2-7}
+& 1 & 1e-1 & 1e-2 & 1e-3 & 1e-4 & 0 \\
+\midrule
+Original &18 &100 &852 & 6982 & 54470 &2\\
+Expanded &12 &10  &6   & 6    & 4     &1\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
